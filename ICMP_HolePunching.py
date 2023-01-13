@@ -15,14 +15,17 @@ def main():
         currentTime = time.time()
         send(packet)
         time.sleep(1)
-    
+
+
 def recieveData():
-    packets = sniff(count = 1, filter = TTL_Excedded_filter)
+    packets = sniff(count=1, filter=TTL_Excedded_filter)
     for packet in packets:
         packet.show()
 
+
 def TTL_Excedded_filter(packet):
     return ICMP in packet and ICMP[type] == 11
+
 
 if __name__ == "__main__":
     main()
